@@ -47,7 +47,8 @@ export default {
       white: "#FFFFFF",
       default_input: "#F2F2F2",
       pressed_input: "#E2E2E2",
-      modal: "#17171B"
+      modal: "#17171B",
+      red_light: "#F6A9B0"
     },
 
     text: {
@@ -72,7 +73,7 @@ export default {
 
   font_size: {
     sm: 14,
-    md: 18,
+    md: 20,
     lg: 28,
     xlg: 34
   },
