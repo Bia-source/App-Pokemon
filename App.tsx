@@ -5,7 +5,8 @@ import { ThemeProvider } from 'styled-components';
 import { useFonts, Lusitana_400Regular, Lusitana_700Bold } from '@expo-google-fonts/lusitana';
 
 import theme from './src/theme/theme';
-import { Welcome } from '@screens/welcome';
+import { Welcome } from '@screens/Welcome';
+import { Home } from '@screens/Home';
 
 
 export default function App() {
@@ -14,7 +15,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="transparent" translucent />
       { fontsLoaded &&
-         <Welcome />
+        //  <Welcome />
+         <Home />
       }
     </ThemeProvider>
   );
