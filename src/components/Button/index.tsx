@@ -14,7 +14,7 @@ export function Button({type, title, size, ...rest}: ButtonComponentProps) {
          type={type}
          size={size}
         >
-          <S.Title> {title} </S.Title>
+          <S.Title type={type}> {title} </S.Title>
         </S.Container>
     )
 }

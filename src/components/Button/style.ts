@@ -16,7 +16,7 @@ export const Container = styled.TouchableOpacity<Props>`
      : 100
     }%;
      height: 50px;
-     background-color: ${type == "white" ? theme.colors.background.red_light
+     background-color: ${type == "white" ? theme.colors.background.white
      : type == "modal" ?  theme.colors.background.modal
      : type == "red_light" ?  theme.colors.background.red_light
      : theme.colors.background.pressed_input
@@ -28,10 +28,10 @@ export const Container = styled.TouchableOpacity<Props>`
   border-radius: 20px;
 `
 
-export const Title = styled.Text`
- ${({ theme })=> css`
-  font-size: ${theme.font_size.sm};
-  color: ${theme.colors.text.white};
+export const Title = styled.Text<Props>`
+ ${({ theme, type })=> css`
+  font-size: ${theme.font_size.sm}px;
+  color: ${type == "white" ? theme.colors.text.black : theme.colors.text.white};
  `}
 
 `
