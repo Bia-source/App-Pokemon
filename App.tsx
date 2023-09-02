@@ -1,18 +1,21 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts, NunitoSans_700Bold, NunitoSans_400Regular} from '@expo-google-fonts/nunito-sans'; 
-import { ThemeProvider } from 'styled-components/native';
+
+import { ThemeProvider } from 'styled-components';
+import { useFonts, Lusitana_400Regular, Lusitana_700Bold } from '@expo-google-fonts/lusitana';
+
 import theme from './src/theme/theme';
+import { Welcome } from '@screens/welcome';
+
 
 export default function App() {
-  const [fontsLoad] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
+  const [fontsLoaded] = useFonts({Lusitana_400Regular, Lusitana_700Bold})
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar 
-         backgroundColor='transparent'
-         translucent
-      />
-      
+      <StatusBar backgroundColor="transparent" translucent />
+      { fontsLoaded &&
+         <Welcome />
+      }
     </ThemeProvider>
   );
 }
-
