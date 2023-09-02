@@ -7,7 +7,7 @@ export const Container = styled.View`
  `}
 `
 
-export const Content = styled.View`
+export const Content = styled.SafeAreaView`
   height: 70%;
   max-width: 80%;
   margin-left: 10%;
@@ -39,6 +39,7 @@ export const Footer = styled.View`
      border-top-left-radius: 20px;
      height: 30%;
      background-color: ${theme.colors.background.white};
+     padding: 20px;
   `}
 `
 

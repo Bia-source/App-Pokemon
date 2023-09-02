@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import AnimetedLottieView from "lottie-react-native";
+import { Button } from "@components/Button";
 
 export function Welcome() {
   return (
@@ -13,7 +14,7 @@ export function Welcome() {
 
       </S.Content>
       <S.Footer>
-       
+       <Button title="Iniciar" type="red_light" size="lg"/>
       </S.Footer>
     </S.Container>
   )
