@@ -1,13 +1,12 @@
 import React from "react";
 import * as S from "./style";
-import logo from "../../assets/logo.json";
 import AnimetedLottieView from "lottie-react-native";
 
 export function Welcome(){
     return (
      <S.Container>
         <S.Content>
-          <AnimetedLottieView autoPlay source={logo} loop/>
+          <AnimetedLottieView autoPlay source={require('../../assets/logo.json')} loop/>
         </S.Content>
         <S.Footer> 
             <S.Title> Bem vindo </S.Title>

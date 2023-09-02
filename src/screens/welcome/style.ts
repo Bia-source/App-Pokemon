@@ -16,14 +16,14 @@ export const Content = styled.View`
 export const Title = styled.Text`
   ${({ theme })=> css`
     font-size: ${theme.font_size.md}px;
-    color: ${theme.colors.text_white};
+    color: ${theme.colors.text.white};
   `}
 `
 
 export const SubTitle = styled.Text`
   ${({ theme })=> css`
     font-size: ${theme.font_size.sm}px;
-    color: ${theme.colors.text_white};
+    color: ${theme.colors.text.white};
   `}
   margin-top: 5px;
 `
@@ -35,6 +35,6 @@ export const Footer = styled.View`
      border-top-right-radius: 20px;
      border-top-left-radius: 20px;
      height: 30%;
-     background-color: ${theme.colors.background_red};
+     background-color: ${theme.colors.background_type.red};
   `}
 `
