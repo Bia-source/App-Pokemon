@@ -13,9 +13,12 @@ ${({ theme, type }) => css`
    margin-top: 30px;
    flex-direction: row;
    padding: 20px;
+   
+   box-shadow: ${theme.colors.background_type[type]} 3px 3px 7px;
 `}
   flex: 1;
   align-items: center;
+  margin-bottom: 20px;
 `
 
 export const LeftSide = styled.View`
