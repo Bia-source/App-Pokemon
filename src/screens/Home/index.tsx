@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { api } from "@service/api";
+import { Card, PokemonProps, PokemonType } from "@components/Card";
+import { FlatList } from "react-native";
+import { Text } from "react-native";
 
-type PokemonTypes = {
-  type: string;
-}
-
-type PokemonProps = {
-    name: string;
-    url: string;
-    id: number;
-    types: PokemonTypes;
-}
 
 type ReturnPokemon = {
    id: number;
-   types: PokemonTypes[]
+   types: PokemonType[]
 }
 
 export function Home(){
@@ -51,7 +44,20 @@ export function Home(){
 
     return(
         <S.Container>
-            {pokemons.map(item => <S.Title>{item.name}</S.Title>)}
+            <FlatList
+              data={pokemons}
+              keyExtractor={pokemon => pokemon.name}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item: pokemon })=> (
+                <Card data={pokemon}/>
+              )}
+              ListEmptyComponent={()=> (
+                <>
+                 <Text> sem conteudo </Text>
+                </>
+              )}
+            />
+            
         </S.Container>
     )
 }

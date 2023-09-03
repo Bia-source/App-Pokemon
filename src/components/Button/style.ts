@@ -4,7 +4,7 @@ export type ButtonTypeStyleProps = "white" | "red_light" | "modal"  ;
 export type ButtonSizeStyleProps = "sm" | "md" | "lg" | "xlg";
 
 type Props = {
-  type?: ButtonTypeStyleProps;
+  type: ButtonTypeStyleProps;
   size?: ButtonSizeStyleProps;
 }
 
@@ -16,11 +16,7 @@ export const Container = styled.TouchableOpacity<Props>`
      : 100
     }%;
      height: 50px;
-     background-color: ${type == "white" ? theme.colors.background.white
-     : type == "modal" ?  theme.colors.background.modal
-     : type == "red_light" ?  theme.colors.background.red_light
-     : theme.colors.background.pressed_input
-    };
+     background-color: ${theme.colors.background[type]};
   `}
 
   justify-content: center;
