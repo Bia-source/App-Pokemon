@@ -7,17 +7,24 @@ import { useFonts, Lusitana_400Regular, Lusitana_700Bold } from '@expo-google-fo
 import theme from './src/theme/theme';
 import { Welcome } from '@screens/Welcome';
 import { Home } from '@screens/Home';
+import styled from 'styled-components/native';
 
 
 export default function App() {
-  const [fontsLoaded] = useFonts({Lusitana_400Regular, Lusitana_700Bold})
+  const [fontsLoaded] = useFonts({ Lusitana_400Regular, Lusitana_700Bold })
   return (
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="transparent" translucent />
-      { fontsLoaded &&
+      {fontsLoaded &&
         //  <Welcome />
-         <Home />
+        <Container>
+          <Home />
+        </Container>
       }
     </ThemeProvider>
   );
 }
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+`

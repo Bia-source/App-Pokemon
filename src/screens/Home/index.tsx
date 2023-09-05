@@ -4,6 +4,7 @@ import { api } from "@service/api";
 import { Card, PokemonProps, PokemonType } from "@components/Card";
 import { FlatList } from "react-native";
 import { Text } from "react-native";
+import { FadeAnimation } from "@components/FadeAnimation";
 
 
 type ReturnPokemon = {
@@ -46,10 +47,12 @@ export function Home(){
         <S.Container>
             <FlatList
               data={pokemons}
-              keyExtractor={pokemon => pokemon.name}
+              keyExtractor={(pokemon, index) => { return pokemon.name}}
               showsVerticalScrollIndicator={false}
               renderItem={({ item: pokemon })=> (
-                <Card data={pokemon}/>
+                <FadeAnimation direction="fade-in-y">
+                    <Card data={pokemon}/>
+                </FadeAnimation>
               )}
               ListEmptyComponent={()=> (
                 <>
