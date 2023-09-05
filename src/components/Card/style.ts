@@ -10,7 +10,7 @@ export const Container = styled.TouchableOpacity<PokemonType>`
 ${({ theme, type }) => css`
    background-color: ${theme.colors.background_type[type]};
    border-radius: 10px;
-   margin-top: 30px;
+   margin-top: 14px;
    flex-direction: row;
    padding: 20px;
    
