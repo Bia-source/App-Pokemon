@@ -47,7 +47,7 @@ export function Home(){
         <S.Container>
             <FlatList
               data={pokemons}
-              keyExtractor={(pokemon, index) => { return pokemon.id.toString()}}
+              keyExtractor={(pokemon, index) => { return pokemon.name}}
               showsVerticalScrollIndicator={false}
               renderItem={({ item: pokemon })=> (
                 <FadeAnimation direction="fade-in-y">
