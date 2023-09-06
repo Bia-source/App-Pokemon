@@ -9,8 +9,7 @@ export function AppStack(){
         <Navigator screenOptions={{
             headerShown: false
         }}>
-            <Screen name='Home' component={AppTab}/>
-            
+            <Screen name='home' component={AppTab}/>         
         </Navigator>
     )
 }

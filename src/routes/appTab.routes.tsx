@@ -13,15 +13,20 @@ export function AppTab() {
                 headerShown: false,
                 tabBarActiveTintColor: "#ed5463",
             }}
+            initialRouteName="welcome"
         >
-            <Screen name="Poke" component={Home} options={{
-                tabBarIcon: ({ size, color }) => <Ionicons name="game-controller" size={size} color={color} />
+            <Screen name="poke" component={Home} options={{
+                tabBarIcon: ({ size, color }) => <Ionicons name="game-controller" size={size} color={color} />,
+                tabBarLabel: "Poke"
             }} />
-            <Screen name="Welcome" component={Welcome} options={{
-                tabBarIcon: ({ size, color }) => <Ionicons name="home" size={size} color={color} />
+            <Screen name="welcome" component={Welcome} options={{
+                tabBarIcon: ({ size, color }) => <Ionicons name="home" size={size} color={color} />,
+                tabBarLabel: "Welcome"
             }} />
-            <Screen name="Profile" component={Welcome} options={{
-                tabBarIcon: ({ size, color }) => <AntDesign name="profile" size={size} color={color} />
+            <Screen name="profile" component={Welcome} options={{
+                tabBarIcon: ({ size, color }) => <AntDesign name="profile" size={size} color={color} />,
+                tabBarLabel: "Profile"
+                
             }} />
         </Navigator>
     )

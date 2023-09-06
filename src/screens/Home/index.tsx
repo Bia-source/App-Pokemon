@@ -8,22 +8,24 @@ import { FadeAnimation } from "@components/FadeAnimation";
 
 
 type ReturnPokemon = {
-   id: number;
-   types: PokemonType[]
+    id: number;
+    types: PokemonType[]
 }
 
-export function Home(){
+export function Home() {
     const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-    useEffect(()=> {
-      getAllPokemons()
-    },[])
+    useEffect(() => {
+        getAllPokemons()
+    }, [])
 
-    async function getAllPokemons(){
-        const { data }= await api.get("/pokemon");
+
+
+    async function getAllPokemons() {
+        const { data } = await api.get("/pokemon");
         const { results } = data;
 
         const payloadPokemons = await Promise.all(
-            results.map(async (pokemon:PokemonProps) => {
+            results.map(async (pokemon: PokemonProps) => {
                 const { id, types } = await getMoreInfoPokemon(pokemon.url)
                 return {
                     name: pokemon.name,
@@ -35,32 +37,30 @@ export function Home(){
         setPokemons(payloadPokemons)
     }
 
-    async function getMoreInfoPokemon(url:string): Promise<ReturnPokemon>{
+    async function getMoreInfoPokemon(url: string): Promise<ReturnPokemon> {
         const { id, types } = (await api.get(url)).data;
-        return { 
+        return {
             id,
             types
         }
     }
 
-    return(
+    return (
         <S.Container>
             <FlatList
-              data={pokemons}
-              keyExtractor={(pokemon, index) => { return pokemon.name}}
-              showsVerticalScrollIndicator={false}
-              renderItem={({ item: pokemon })=> (
-                <FadeAnimation direction="fade-in-y">
-                    <Card data={pokemon}/>
-                </FadeAnimation>
-              )}
-              ListEmptyComponent={()=> (
-                <>
-                 <Text> sem conteudo </Text>
-                </>
-              )}
+                data={pokemons}
+                keyExtractor={(pokemon) =>  pokemon.id.toString() }
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item: pokemon }) => (
+                    <Card data={pokemon} />
+                )}
+                ListEmptyComponent={() => (
+                    <>
+                        <Text> sem conteudo </Text>
+                    </>
+                )}
             />
-            
+
         </S.Container>
     )
 }
