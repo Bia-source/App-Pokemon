@@ -48,7 +48,9 @@ export default {
       default_input: "#F2F2F2",
       pressed_input: "#E2E2E2",
       modal: "#17171B",
-      red_light: "#F6A9B0"
+      red_light: "#F6A9B0",
+      pokeball: "#F5F5F5"
+
     },
 
     text: {
@@ -75,7 +77,8 @@ export default {
     sm: 14,
     md: 20,
     lg: 28,
-    xlg: 34
+    xlg: 32,
+    xxlg: 34
   },
 
   font_family: {

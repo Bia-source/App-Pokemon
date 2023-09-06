@@ -4,8 +4,7 @@ import { api } from "@service/api";
 import { Card, PokemonProps, PokemonType } from "@components/Card";
 import { FlatList } from "react-native";
 import { Text } from "react-native";
-import { FadeAnimation } from "@components/FadeAnimation";
-
+import pokeballHeader from "../../assets/pokeball.png";
 
 type ReturnPokemon = {
     id: number;
@@ -49,11 +48,18 @@ export function Home() {
         <S.Container>
             <FlatList
                 data={pokemons}
-                keyExtractor={(pokemon) =>  pokemon.id.toString() }
+                keyExtractor={(pokemon) =>  pokemon.name }
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item: pokemon }) => (
                     <Card data={pokemon} />
                 )}
+                ListHeaderComponent={<>
+                 <S.Header source={pokeballHeader}/>
+                 <S.Title>Pokedex</S.Title>
+                </>}
+                contentContainerStyle={{
+                    paddingHorizontal: 20
+                }}
                 ListEmptyComponent={() => (
                     <>
                         <Text> sem conteudo </Text>
