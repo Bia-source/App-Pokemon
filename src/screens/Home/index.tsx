@@ -5,6 +5,8 @@ import { Card, PokemonProps, PokemonType } from "@components/Card";
 import { FlatList } from "react-native";
 import { Text } from "react-native";
 import pokeballHeader from "../../assets/pokeball.png";
+import { useNavigation } from "@react-navigation/native";
+import { SectionList } from "react-native";
 
 type ReturnPokemon = {
     id: number;
@@ -12,6 +14,7 @@ type ReturnPokemon = {
 }
 
 export function Home() {
+    const { navigate } = useNavigation()
     const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
     useEffect(() => {
         getAllPokemons()
@@ -44,15 +47,24 @@ export function Home() {
         }
     }
 
+    function handleNavigationProfile(pokemonId: number){
+       navigate("profileStack", {pokemonId})
+    }
+
     return (
         <S.Container>
             <FlatList
                 data={pokemons}
-                keyExtractor={(pokemon) =>  pokemon.name }
+                keyExtractor={pokemon => pokemon.id.toString() }
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item: pokemon }) => (
-                    <Card data={pokemon} />
-                )}
+                    <Card
+                      data={pokemon}
+                      onPress={() => {
+                        handleNavigationProfile(pokemon.id);
+                      }}
+                    />
+                  )}
                 ListHeaderComponent={<>
                  <S.Header source={pokeballHeader}/>
                  <S.Title>Pokedex</S.Title>

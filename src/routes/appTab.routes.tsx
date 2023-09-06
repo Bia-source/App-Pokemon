@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "@screens/Home";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { Welcome } from "@screens/Welcome";
+import { Profile } from "@screens/Profile";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -23,11 +24,12 @@ export function AppTab() {
                 tabBarIcon: ({ size, color }) => <Ionicons name="home" size={size} color={color} />,
                 tabBarLabel: "Welcome"
             }} />
-            <Screen name="profile" component={Welcome} options={{
+            <Screen name="profile" component={Profile} options={{
                 tabBarIcon: ({ size, color }) => <AntDesign name="profile" size={size} color={color} />,
                 tabBarLabel: "Profile"
                 
             }} />
+
         </Navigator>
     )
 }

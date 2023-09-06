@@ -8,7 +8,7 @@ export function Welcome() {
   const { navigate } = useNavigation();
 
   function handleNavigation(){
-    navigate('poke');
+    navigate('pokeStack');
   }
 
   return (

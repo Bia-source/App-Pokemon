@@ -3,7 +3,7 @@ import styled, { css } from "styled-components/native";
 
 const windowWidth = Dimensions.get("window").width;
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
  ${({ theme }) => css`
     flex: 1;
     background-color: ${theme.colors.background.white};
