@@ -13,9 +13,13 @@ export function AppStack(){
             headerShown: false
         }}>
             <Screen name='home' component={AppTab}/>
+            {/* <Screen name='container' component={}/> */}
             <Screen name='pokeStack' component={Home}/>
+            <Screen name='poke' component={AppTab}/>
             <Screen name='welcomeStack' component={Welcome}/>         
+            <Screen name='welcome' component={AppTab}/>         
             <Screen name='profileStack' component={Profile}/>         
+            <Screen name='profile' component={AppTab}/>         
         </Navigator>
     )
 }

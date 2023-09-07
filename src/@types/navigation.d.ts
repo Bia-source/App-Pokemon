@@ -12,6 +12,11 @@ export declare global {
             profileStack: {
                 pokemonId:number;
             };
+            pokeTab: undefined;
+            welcomeTab: undefined;
+            profileTab: {
+                pokemonId:number;
+            };
         }
     }
 }

@@ -6,7 +6,7 @@ import { FlatList } from "react-native";
 import { Text } from "react-native";
 import pokeballHeader from "../../assets/pokeball.png";
 import { useNavigation } from "@react-navigation/native";
-import { SectionList } from "react-native";
+import LottieView from 'lottie-react-native';
 
 type ReturnPokemon = {
     id: number;
@@ -16,6 +16,8 @@ type ReturnPokemon = {
 export function Home() {
     const { navigate } = useNavigation()
     const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
+    const [load, setLoading] = useState(true);
+
     useEffect(() => {
         getAllPokemons()
     }, [])
@@ -23,20 +25,27 @@ export function Home() {
 
 
     async function getAllPokemons() {
-        const { data } = await api.get("/pokemon");
-        const { results } = data;
+        try {
+            setPokemons([]);
+            const { data } = await api.get("/pokemon");
+            const { results } = data;
 
-        const payloadPokemons = await Promise.all(
-            results.map(async (pokemon: PokemonProps) => {
-                const { id, types } = await getMoreInfoPokemon(pokemon.url)
-                return {
-                    name: pokemon.name,
-                    id,
-                    types
-                }
-            })
-        );
-        setPokemons(payloadPokemons)
+            const payloadPokemons = await Promise.all(
+                results.map(async (pokemon: PokemonProps) => {
+                    const { id, types } = await getMoreInfoPokemon(pokemon.url)
+                    return {
+                        name: pokemon.name,
+                        id,
+                        types
+                    }
+                })
+            );
+            setPokemons(payloadPokemons);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     async function getMoreInfoPokemon(url: string): Promise<ReturnPokemon> {
@@ -47,38 +56,50 @@ export function Home() {
         }
     }
 
-    function handleNavigationProfile(pokemonId: number){
-       navigate("profileStack", {pokemonId})
+    function handleNavigationProfile(pokemonId: number) {
+        navigate("profileStack", { pokemonId })
     }
 
     return (
-        <S.Container>
-            <FlatList
-                data={pokemons}
-                keyExtractor={pokemon => pokemon.id.toString() }
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item: pokemon }) => (
-                    <Card
-                      data={pokemon}
-                      onPress={() => {
-                        handleNavigationProfile(pokemon.id);
-                      }}
-                    />
-                  )}
-                ListHeaderComponent={<>
-                 <S.Header source={pokeballHeader}/>
-                 <S.Title>Pokedex</S.Title>
-                </>}
-                contentContainerStyle={{
-                    paddingHorizontal: 20
-                }}
-                ListEmptyComponent={() => (
-                    <>
-                        <Text> sem conteudo </Text>
-                    </>
-                )}
+        <>
+            {load ? <LottieView 
+                    autoPlay
+                    loop
+                    style={{ width: 300, height: 300 }}
+                    source={require('../../assets/icons/loading.json')}
             />
+                :
+                <S.Container>
+                    <FlatList
+                        data={pokemons}
+                        keyExtractor={pokemon => pokemon.id.toString()}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({ item: pokemon }) => (
+                            <Card
+                                data={pokemon}
+                                onPress={() => {
+                                    handleNavigationProfile(pokemon.id);
+                                }}
+                            />
+                        )}
+                        ListHeaderComponent={<>
+                            <S.Header source={pokeballHeader} />
+                            <S.Title>Pokedex</S.Title>
+                        </>}
+                        contentContainerStyle={{
+                            paddingHorizontal: 20
+                        }}
+                        ListEmptyComponent={() => (
+                            <>
+                                <Text> sem conteudo </Text>
+                            </>
+                        )}
+                        
+                    />
 
-        </S.Container>
+                </S.Container>
+
+            }
+        </>
     )
 }

@@ -7,6 +7,7 @@ import { useFonts, Lusitana_400Regular, Lusitana_700Bold } from '@expo-google-fo
 import theme from './src/theme/theme';
 import styled from 'styled-components/native';
 import { Routes } from '@routes/index';
+import { ViewProps } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Lusitana_400Regular, Lusitana_700Bold })
@@ -15,11 +16,24 @@ export default function App() {
       <StatusBar backgroundColor="transparent" translucent />
       {fontsLoaded &&
         //  <Welcome />
-        
-         <Routes/>
+        <Container>
+          <Routes/>
+        </Container>
+         
         
       }
     </ThemeProvider>
   );
 }
 
+type ContainerProps = ViewProps & {
+  children: React.ReactNode;
+}
+
+function Container({ children }: ContainerProps){
+  return(
+   <>
+    {children}
+   </>
+  )
+}
