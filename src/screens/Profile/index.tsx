@@ -12,6 +12,7 @@ import LottieView from "lottie-react-native";
 import { FadeAnimation } from "@components/FadeAnimation";
 import { PokemonNameColor } from "@utils/types";
 import dots from "@assets/dots.png";
+import { OpacityAnimation } from "@components/OpacityAnimation";
 
 type RouteParamsProfile = {
     pokemonId: number;
@@ -53,7 +54,6 @@ export function Profile() {
 
     const [pokemon, setPokemon] = useState({} as PokemonPropsProfile)
     const [load, setLoading] = useState(true);
-    const [imagePokemon, setImagePokemon] = useState<any>();
 
     useEffect(() => {
         getDetailsPokemon()
@@ -79,7 +79,7 @@ export function Profile() {
 
     return (
         <>
-            {load && !imagePokemon ? <LottieView
+            {load ? <LottieView
                 autoPlay
                 loop
                 style={{ width: 300, height: 300 }}
@@ -100,8 +100,13 @@ export function Profile() {
                         </FadeAnimation>
 
                         <S.Content>
-                            <S.PokemonId>#{pokemon.id}</S.PokemonId>
-                            <S.PokemonName>{pokemon.name}</S.PokemonName>
+                            <OpacityAnimation duration={5000} show="appear">
+                                <>
+                                <S.PokemonId>#{pokemon.id}</S.PokemonId>
+                                <S.PokemonName>{pokemon.name}</S.PokemonName>
+                                </>
+                            </OpacityAnimation>
+
                             <FadeAnimation direction="fade-in-x">
                                 <S.PokemonTypeContainer>
                                     {pokemon.types.map(({ type }) =>
