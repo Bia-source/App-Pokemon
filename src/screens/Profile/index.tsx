@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import * as S from "./style";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { Text } from "react-native";
-import { api } from "@service/api";
-import { useTheme } from "styled-components";
-import { Alert } from "react-native";
-import { ScrollView } from "react-native";
-import { Feather } from "@expo/vector-icons";
 import circle from "@assets/circle.png";
-import LottieView from "lottie-react-native";
-import { FadeAnimation } from "@components/FadeAnimation";
-import { PokemonNameColor } from "@utils/types";
 import dots from "@assets/dots.png";
+import { FadeAnimation } from "@components/FadeAnimation";
 import { OpacityAnimation } from "@components/OpacityAnimation";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { api } from "@service/api";
+import { PokemonNameColor, PokemonTypeColors } from "@utils/types";
+import LottieView from "lottie-react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, ScrollView } from "react-native";
+import { useTheme } from "styled-components";
+import * as S from "./style";
+import * as Progress from 'react-native-progress';
 
 type RouteParamsProfile = {
     pokemonId: number;
@@ -20,13 +19,15 @@ type RouteParamsProfile = {
 
 type Stat = {
     base_stat: number;
-    name: string;
+    stat: {
+        name: string;
+    }
 }
 
 
 type PokemonType = {
     type: {
-        name: PokemonNameColor;
+        name: PokemonTypeColors;
     }
 }
 
@@ -86,7 +87,7 @@ export function Profile() {
                 source={require('../../assets/icons/loading.json')}
             />
                 :
-                <ScrollView style={{ backgroundColor: "#fff"}}>
+                <ScrollView style={{ backgroundColor: "#fff" }}>
                     <S.Header type={pokemon.types[0].type.name}>
                         <S.BackButton onPress={handleGoBack}>
                             <Feather name="chevron-left" size={24} color="#fff" />
@@ -102,8 +103,8 @@ export function Profile() {
                         <S.Content>
                             <OpacityAnimation duration={5000} show="appear">
                                 <>
-                                <S.PokemonId>#{pokemon.id}</S.PokemonId>
-                                <S.PokemonName>{pokemon.name}</S.PokemonName>
+                                    <S.PokemonId>#{pokemon.id}</S.PokemonId>
+                                    <S.PokemonName>{pokemon.name}</S.PokemonName>
                                 </>
                             </OpacityAnimation>
 
@@ -117,10 +118,39 @@ export function Profile() {
                                 </S.PokemonTypeContainer>
                             </FadeAnimation>
                         </S.Content>
-                        <S.DotsImage source={dots}/>
+                        <S.DotsImage source={dots} />
                     </S.Header>
+
                     <S.Container>
                         <S.Title type={pokemon.types[0].type.name}>Base States</S.Title>
+                        {pokemon.stats.map(atribute =>
+                            <S.StatusBar key={atribute.stat.name}>
+                                {console.log("atribute -> ", atribute)}
+                                {atribute.stat.name.length > 10 ?
+                                    <S.Atributes>
+                                        {`${atribute.stat.name[0]}${atribute.stat.name[1]}${atribute.stat.name[7]}${atribute.stat.name[8]}${atribute.stat.name[9]}${atribute.stat.name[10]}`}
+                                    </S.Atributes>
+                                    : <S.Atributes> {atribute.stat.name} </S.Atributes>
+                                }
+                                <S.AtributesValue> {atribute.base_stat} </S.AtributesValue>
+                                <S.ContentBar>
+                                    <Progress.Bar
+                                        borderWidth={0}
+                                        progress={100}
+                                        width={atribute.base_stat}
+                                        color={colors.type[pokemon.types[0].type.name]}
+                                    />
+                                </S.ContentBar>
+                            </S.StatusBar>
+                        )}
+
+                        <S.Title type={pokemon.types[0].type.name}> Abilities </S.Title>
+
+                        {pokemon.abilities.map(currentAbility => 
+                        <S.Ability>
+                            {currentAbility.ability.name}
+                        </S.Ability>)
+                        }
                     </S.Container>
                 </ScrollView>
 

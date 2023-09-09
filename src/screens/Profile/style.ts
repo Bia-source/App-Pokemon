@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components/native";
-
 import { PokemonNameColor, PokemonTypeColors } from "@utils/types";
 
 type TypeProps = {
@@ -123,3 +122,50 @@ export const Title = styled.Text<TypeProps>`
     color: ${theme.colors.background_type[type]};
   `}
 ` 
+
+export const StatusBar = styled.View`
+ width: 100%;
+ padding: 10px 20px;
+ flex-direction: row;
+ align-items: center;
+`
+
+export const Atributes = styled.Text`
+${({ theme })=> css`
+    font-style: normal;
+    font-family: ${theme.font_family.bold};
+    font-size: ${theme.font_size.sm}px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: ${theme.colors.text.black};
+    width: 55px;
+  `}
+`
+
+export const AtributesValue = styled.Text`
+${({ theme })=> css`
+    font-style: normal;
+    font-family: ${theme.font_family.regular};
+    font-size: ${theme.font_size.md}px;
+    line-height: 28px;
+    text-align: right;
+    color: ${theme.colors.text.grey};
+    margin-left: 20px;
+  `}
+`
+
+export const ContentBar = styled.View`
+ margin-left: 20px;
+`
+
+export const Ability = styled.Text`
+${({ theme })=> css`
+    font-style: normal;
+    font-family: ${theme.font_family.bold};
+    font-size: ${theme.font_size.sm}px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: ${theme.colors.text.black};
+    padding: 10px 20px;
+  `}
+`
