@@ -125,7 +125,6 @@ export function Profile() {
                         <S.Title type={pokemon.types[0].type.name}>Base States</S.Title>
                         {pokemon.stats.map(atribute =>
                             <S.StatusBar key={atribute.stat.name}>
-                                {console.log("atribute -> ", atribute)}
                                 {atribute.stat.name.length > 10 ?
                                     <S.Atributes>
                                         {`${atribute.stat.name[0]}${atribute.stat.name[1]}${atribute.stat.name[7]}${atribute.stat.name[8]}${atribute.stat.name[9]}${atribute.stat.name[10]}`}

@@ -21,7 +21,6 @@ export function FadeAnimation({ children, direction, ...rest }: FadeAnimationPro
    function showDirection(direction: DirectionType) {
       switch (direction) {
          case "fade-out-x":
-            console.log("entrei");
             cardOpacityOut.value = withTiming(0, { duration: 3000 });
             cardOffsetOut.value = withTiming(1.25 * displayWidth, { duration: 3000 });
             break;

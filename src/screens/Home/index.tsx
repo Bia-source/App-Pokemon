@@ -22,8 +22,6 @@ export function Home() {
         getAllPokemons()
     }, [])
 
-
-
     async function getAllPokemons() {
         try {
             setPokemons([]);
@@ -44,7 +42,6 @@ export function Home() {
         } catch (error) {
             console.log(error);
         } finally {
-            console.log(pokemons);
             setLoading(false);
         }
     }
