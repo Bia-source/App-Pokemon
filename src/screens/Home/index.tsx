@@ -7,6 +7,7 @@ import { Text } from "react-native";
 import pokeballHeader from "../../assets/pokeball.png";
 import { useNavigation } from "@react-navigation/native";
 import LottieView from 'lottie-react-native';
+import { Filter } from "./components/Filters";
 
 type ReturnPokemon = {
     id: number;
@@ -68,6 +69,7 @@ export function Home() {
             />
                 :
                 <S.Container>
+                    
                     <FlatList
                         data={pokemons}
                         keyExtractor={pokemon => pokemon.id.toString()}
@@ -94,7 +96,7 @@ export function Home() {
                         )}
                         
                     />
-
+                   <Filter/>
                 </S.Container>
 
             }
