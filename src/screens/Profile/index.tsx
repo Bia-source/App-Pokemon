@@ -1,5 +1,5 @@
 import circle from "@assets/circle.png";
-import dots from "@assets/dots.png";
+import dots from "@assets/dotsMult.png";
 import { FadeAnimation } from "@components/FadeAnimation";
 import { OpacityAnimation } from "@components/OpacityAnimation";
 import { Feather } from "@expo/vector-icons";

@@ -70,7 +70,7 @@ export const PokemonTypeText = styled.Text`
    ${({ theme }) => css`
    color: ${theme.colors.text.white};
    font-size: ${theme.font_size.sm}px;
-   line-height: 14px;
+   line-height: 16px;
    font-family: ${theme.font_family.bold};
    text-transform: capitalize;
 `}

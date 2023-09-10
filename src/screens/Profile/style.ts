@@ -92,10 +92,10 @@ font-weight: 500;
 
 export const DotsImage = styled.Image`
  position: absolute;
- width: 85px;
- right: -20px;
- top: 222px;
- height: 36px;
+ width: 20%;
+ right: -2px;
+ top: 200px;
+ height: 20%;
 `
 
 export const Container = styled.View`
